@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LET Review Courses - Enroll Now</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .main-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .header-section {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .lesson-card {
+            border: none;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .lesson-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #FF6B6B, #4ECDC4);
+        }
+        
+        .lesson-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .course-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .price {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.5em;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .enroll-btn {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .enroll-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+        }
+        
+        .payment-modal .modal-dialog {
+            max-width: 550px;
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .qr-display {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid #e3f2fd;
+        }
+        
+        .qr-image {
+            max-width: 250px;
+            border: 3px solid #2196f3;
+            border-radius: 15px;
+            margin: 15px 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-indicator {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-number {
+            background: linear-gradient(45deg, #2196f3, #1976d2);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            box-shadow: 0 4px 10px rgba(33, 150, 243, 0.3);
+        }
+        
+        .gcash-info {
+            background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
+            border: 2px solid #28a745;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #fff9c4 0%, #fff3cd 100%);
+            border: 2px solid #ffc107;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .form-link-btn {
+            background: linear-gradient(45deg, #28a745, #34ce57);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .form-link-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+        }
+        
+        .payment-reference {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px dashed #6c757d;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .reference-code {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #dc3545;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+        }
+        
+        .privacy-section {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe6e6 100%);
+            border: 2px solid #dc3545;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .footer-info {
+            background: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="main-container">
+                    <!-- Header Section -->
+                    <div class="header-section">
+                        <h1 class="display-4 mb-3">🎓 LET Review Courses</h1>
+                        <p class="lead">Prepare for the Licensure Examination for Teachers with our comprehensive review materials</p>
+                        <div class="mt-3">
+                            <span class="badge bg-light text-dark me-2 p-2">📚 Comprehensive Materials</span>
+                            <span class="badge bg-light text-dark me-2 p-2">👥 Expert Instructors</span>
+                            <span class="badge bg-light text-dark p-2">🏆 High Passing Rate</span>
+                        </div>
+                    </div>
+
+                    <div class="p-5">
+                        <!-- Course Cards -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="lesson-card text-center">
+                                    <div class="course-icon">📖</div>
+                                    <h3 class="mb-3">LET GEN ED</h3>
+                                    <p class="text-muted mb-4">General Education Review covering English, Filipino, Mathematics, Science, and Social Studies. Complete with practice tests and comprehensive study guides.</p>
+                                    <div class="price mb-4">₱1.00</div>
+                                    <button class="btn btn-primary enroll-btn" onclick="openPaymentModal('LET GEN ED', 1.00, 'LETGEN001')">
+                                        Enroll Now
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="lesson-card text-center">
+                                    <div class="course-icon">🏫</div>
+                                    <h3 class="mb-3">LET PROF ED</h3>
+                                    <p class="text-muted mb-4">Professional Education Review focusing on teaching methodologies, educational psychology, curriculum development, and classroom management strategies.</p>
+                                    <div class="price mb-4">₱1.00</div>
+                                    <button class="btn btn-primary enroll-btn" onclick="openPaymentModal('LET PROF ED', 1.00, 'LETPROF001')">
+                                        Enroll Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Features Section -->
+                        <div class="row mt-5">
+                            <div class="col-md-12">
+                                <h3 class="text-center mb-4">What You Get:</h3>
+                                <div class="row">
+                                    <div class="col-md-4 text-center mb-3">
+                                        <div class="mb-3" style="font-size: 2rem;">📋</div>
+                                        <h5>Study Materials</h5>
+                                        <p class="text-muted">Comprehensive review materials and practice tests</p>
+                                    </div>
+                                    <div class="col-md-4 text-center mb-3">
+                                        <div class="mb-3" style="font-size: 2rem;">👥</div>
+                                        <h5>Private Group Access</h5>
+                                        <p class="text-muted">Join our exclusive Facebook group for discussions</p>
+                                    </div>
+                                    <div class="col-md-4 text-center mb-3">
+                                        <div class="mb-3" style="font-size: 2rem;">💬</div>
+                                        <h5>Expert Support</h5>
+                                        <p class="text-muted">Get help from experienced LET reviewers</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer Info -->
+                    <div class="footer-info">
+                        <h5>🔒 Secure Payment Process</h5>
+                        <p class="mb-0">We use GCash for secure payments. Your information is protected and never shared with third parties.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="modal fade" id="paymentModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header text-white">
+                    <h5 class="modal-title">📱 GCash Payment</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-3">
+                        <h5 id="lessonTitle" class="fw-bold text-primary">Course Title</h5>
+                        <div class="price mb-3">Amount: ₱<span id="paymentAmount">0</span></div>
+                        <div class="payment-reference">
+                            <div class="mb-2"><strong>Your Reference Code:</strong></div>
+                            <div class="reference-code" id="referenceCode">REF001</div>
+                            <small class="text-muted mt-2 d-block">Keep this code for form submission</small>
+                        </div>
+                    </div>
+
+                    <!-- Step 1: Payment -->
+                    <div class="step-indicator">
+                        <span class="step-number">1</span>
+                        <strong>Pay via GCash</strong>
+                    </div>
+
+                    <div class="qr-display">
+                        <div class="gcash-info">
+                            <h6 class="text-success mb-3">💳 GCash Payment Details</h6>
+                            <div class="row">
+                                <div class="col-sm-4"><strong>Name:</strong></div>
+                                <div class="col-sm-8">Test</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4"><strong>Amount:</strong></div>
+                                <div class="col-sm-8">₱1.00</div>
+                            </div>
+                        </div>
+                        
+                        <!-- QR Code - Replace with your actual QR code -->
+                        <img src="img/qrcode.png" 
+                             alt="GCash QR Code" class="qr-image" id="qrCodeImage">
+                        
+                        <div class="warning-box">
+                            <div class="mb-2"><strong>⚠️ Important Payment Instructions:</strong></div>
+                            <ul class="text-start mb-0">
+                                <li>Pay exactly <strong>₱1.00</strong></li>
+                                <li>Make sure recipient name shows <strong>"Test"</strong></li>
+                                <li>Take screenshot of successful payment</li>
+                                <li>Note your GCash transaction number</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Form -->
+                    <div class="step-indicator">
+                        <span class="step-number">2</span>
+                        <strong>Complete Verification Form</strong>
+                    </div>
+
+                    <div class="text-center mb-3">
+                        <p class="mb-3">After payment, fill out our verification form:</p>
+                        <button class="btn btn-success form-link-btn" onclick="openVerificationForm()">
+                            📝 Open Verification Form
+                        </button>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <strong>📋 Required Information:</strong>
+                        <ul class="mb-0 mt-2">
+                            <li><strong>Reference Code:</strong> <span id="refCodeDisplay">REF001</span></li>
+                            <li><strong>GCash Transaction Number</strong></li>
+                            <li><strong>Facebook Profile Link</strong> (for group invitation)</li>
+                            <li><strong>Email Address</strong> (for course access)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Privacy Section -->
+                    <div class="privacy-section">
+                        <h6 class="text-danger mb-3">🔒 Privacy & Data Protection</h6>
+                        <small>
+                            <strong>We collect your information to:</strong>
+                            <ul class="mt-2 mb-2">
+                                <li>Verify your payment and provide course access</li>
+                                <li>Send you course materials via email</li>
+                                <li>Invite you to our private Facebook study group</li>
+                            </ul>
+                            <strong>We will NOT:</strong>
+                            <ul class="mt-2 mb-2">
+                                <li>Share your personal information with third parties</li>
+                                <li>Use your data for marketing purposes</li>
+                                <li>Store your payment information</li>
+                            </ul>
+                            <div class="mt-2">
+                                <strong>Note:</strong> Your Facebook link is required only for group invitation. We respect your privacy and follow data protection guidelines.
+                            </div>
+                        </small>
+                    </div>
+
+                    <!-- Step 3: Confirmation -->
+                    <div class="step-indicator">
+                        <span class="step-number">3</span>
+                        <strong>Receive Access</strong>
+                    </div>
+                    
+                    <div class="alert alert-success">
+                        <div class="mb-2"><strong>✅ After verification, you'll receive:</strong></div>
+                        <ul class="mb-0">
+                            <li>Facebook group invitation within 24 hours</li>
+                            <li>Course materials sent to your email</li>
+                            <li>Welcome message with study guide</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="openVerificationForm()">
+                        Continue to Form →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Replace with your actual Google Form URL
+        const VERIFICATION_FORM_URL = "https://forms.gle/SqBs4bbLk29aafS77";
+        
+        let currentPayment = {
+            lessonTitle: '',
+            amount: 0,
+            referenceCode: ''
+        };
+
+        function openPaymentModal(lessonTitle, amount, referenceCode) {
+            currentPayment.lessonTitle = lessonTitle;
+            currentPayment.amount = amount;
+            currentPayment.referenceCode = referenceCode;
+
+            // Update modal content
+            document.getElementById('lessonTitle').textContent = lessonTitle;
+            document.getElementById('paymentAmount').textContent = amount.toFixed(2);
+            document.getElementById('referenceCode').textContent = referenceCode;
+            document.getElementById('refCodeDisplay').textContent = referenceCode;
+
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('paymentModal'));
+            modal.show();
+        }
+
+        function openVerificationForm() {
+            // Pre-fill form URL with reference code and course info
+            const formUrl = `${VERIFICATION_FORM_URL}?entry.reference=${currentPayment.referenceCode}&entry.course=${encodeURIComponent(currentPayment.lessonTitle)}&entry.amount=${currentPayment.amount}`;
+            
+            // Open form in new tab
+            window.open(formUrl, '_blank');
+            
+            // Show reminder
+            setTimeout(() => {
+                alert(`📝 Form opened in new tab!\n\n✅ Remember to include:\n• Reference Code: ${currentPayment.referenceCode}\n• Your GCash transaction number\n• Your Facebook profile link\n• Your email address\n\n⏰ We'll process your enrollment within 24 hours.`);
+            }, 500);
+        }
+
+        // Prevent accidental page refresh during payment
+        window.addEventListener('beforeunload', function(e) {
+            const modal = bootstrap.Modal.getInstance(document.getElementById('paymentModal'));
+            if (modal && modal._isShown) {
+                e.preventDefault();
+                e.returnValue = 'You have an ongoing enrollment process. Are you sure you want to leave?';
+            }
+        });
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.lesson-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
